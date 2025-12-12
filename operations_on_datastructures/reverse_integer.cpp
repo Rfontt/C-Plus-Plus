@@ -8,6 +8,7 @@
  * @author [Rfontt](https://github.com/Rfontt)
  */
 
+#include <cassert>
 #include <iostream>
 #include <limits>
 
@@ -40,8 +41,37 @@ int reverse(int number) {
     return reversed;
 }
 
-int main() {
-    int reversed = reverse(123);
+void test() {
+    // Positive numbers
+    assert(reverse(123) == 321);
+    assert(reverse(1) == 1);
+    assert(reverse(10) == 1);
 
-    std::cout << "Number reversed: " << reversed << "\n";
+    // Negative numbers
+    assert(reverse(-123) == -321);
+    assert(reverse(-10) == -1);
+
+    // Edge cases
+    assert(reverse(0) == 0);
+
+    // Reverse of 1534236469 would overflow 32-bit
+    assert(reverse(1534236469) == 0);
+
+    // Reverse of INT32_MAX (2147483647) also overflows
+    assert(reverse(std::numeric_limits<int>::max()) == 0);
+
+    // Reverse of INT32_MIN (−2147483648) also overflows
+    assert(reverse(std::numeric_limits<int>::min()) == 0);
+
+    // Palindromes
+    assert(reverse(1221) == 1221);
+    assert(reverse(-1221) == -1221);
+
+    std::cout << "All tests passed!\n";
+}
+
+int main() {
+    test();
+
+    return 0;
 }
