@@ -41,6 +41,10 @@ int reverse(int number) {
     return reversed;
 }
 
+/**
+ * @brief Self-test implementations
+ * @returns void
+ */
 void test() {
     // Positive numbers
     assert(reverse(123) == 321);
@@ -70,6 +74,10 @@ void test() {
     std::cout << "All tests passed!\n";
 }
 
+/**
+ * @brief Main function
+ * @returns 0 on exit
+ */
 int main() {
     test();
 
